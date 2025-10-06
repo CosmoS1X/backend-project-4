@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --coverageProvider=v8",
+    "test:coverage": "jest --coverage",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -19,11 +19,8 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ]
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["text", "lcov", "html", "text-summary"]
   },
   "repository": {
     "type": "git",
