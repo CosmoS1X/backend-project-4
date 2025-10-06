@@ -26,13 +26,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: make deps-install
-    - run: make check
-    - run: make build
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v9.0.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+    - run: npm ci
+    - run: npm run type-check
+    - run: npm run test:coverage
+    - run: npm run lint
+    - run: npm run build
+    - uses: qltysh/qlty-action/coverage@v2
       with:
-        coverageCommand: make test-coverage
-        debug: true
+        token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+        files: coverage/lcov.info
